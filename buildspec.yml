@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies (if any)..."
+      # For Python, you might install requirements here if you had a requirements.txt file
+      #- pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Building the application..."
+      - echo "Running a simple test..."
+      - python app.py # Execute the Python script
+  post_build:
+    commands:
+      - echo "Build completed. Packaging artifacts..."
+      - aws s3 cp app.py s3://$CODEBUILD_ARTIFACTS_BUCKET/ # Copy the script to the artifacts bucket
+artifacts:
+  files:
+    - app.py
+    
+•	For the static HTML file (index.html), add the following content: 
+
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No dependencies to install for static HTML."
+  build:
+    commands:
+      - echo "Building the static website..."
+  post_build:
+    commands:
+      - echo "Build completed. Packaging artifacts..."
+      - aws s3 cp index.html s3://$CODEBUILD_ARTIFACTS_BUCKET/ # Copy the HTML file
+artifacts:
+  files:
+    - index.html
+
+  •	Commit and push the buildspec.yml file to your CodeCommit repository: version: 0.2
