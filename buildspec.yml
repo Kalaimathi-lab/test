@@ -10,7 +10,7 @@ phases:
     commands:
       - echo "Building the application..."
       - echo "Running a simple test..."
-      - python app.py # Execute the Python script
+      - python3 3 3 p.py # Execute the Python script
   post_build:
     commands:
       - echo "Build completed. Packaging artifacts..."
